@@ -31,14 +31,20 @@ function takeRequest(userID, data) {
 
     var data_arr = data.split('-');
     var refId = parseInt(data_arr[1]) + 1;
+    var refCategory = parseInt(data_arr[2]) + 1;
+    var refCredits = parseInt(data_arr[3]) + 1;
+    var refRemark = parseInt(data_arr[8]) + 1;
     var requestor_id = rangeValues[refId - 1][3];
+    var requestor = userInfo(requestor_id);
 
     setRequestStatus(refId, "Taken");
     setRequestSlave(refId, userID);
 
     var slave = userInfo(userID);
+    text = slave_update = "Request taken";
     var str = "Request taken by " + slave.name + " from " + slave.room;
 
-    sendText(userID, 'Request taken');
+    sendText(userID, text);
+    text = 'Request made by ' + requestor.tele_handle + ' (' + requestor.room + ') : ' + refCategory + ' \n' + refCredits + ' credit(s)' +'\nRef number: ' + refId + '\nRemark: ' + refRemark;
     sendText(requestor_id, str);
 }
