@@ -9,7 +9,16 @@ function register(userID) {
         '<b> What is your name and room number? </b>';
       sendText(userID, text);
       text =
-        'Please input in the format: <b> Name A101 </b>, for example: John A101';
+        'Please input in the format: <b> Name RoomNo @tele_handle </b>, for example: John A101 @johnsmith98';
+    } else if (Object.getOwnPropertyNames(user).length != 0 && user.tele_handle == null) {
+      text =
+        "Something's wrong with your telegram handle. Please update it." +
+        "\n\n" +
+        "<b> What is your updated Telegram handle? </b>";
+        sendText(userID, text);
+        text = 
+          "Please input in the format: @tele_handle \n" + 
+          "eg. @johnsmith2000";
     } else {
       text =
         'Welcome back ' +
